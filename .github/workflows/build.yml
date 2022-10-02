@@ -39,6 +39,11 @@ jobs:
         uses: docker/setup-qemu-action@v1.2.0
         if: runner.os == 'Linux'
 
+      - name: additional environments for musllinux
+        if: runner.archs == 'aarch64'
+        env:
+          CIBW_BUILD: "*-manylinux_aarch64 *-musllinux_aarch64"
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.3.0
         env:
