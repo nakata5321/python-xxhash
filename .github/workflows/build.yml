@@ -41,14 +41,14 @@ jobs:
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.3.0
-        if: ${{ matrix.archs }} != "aarch64"
+        if: ${{ matrix.os.archs }} != "aarch64"
         env:
           CIBW_ARCHS: "${{ matrix.archs }}"
           CIBW_PRERELEASE_PYTHONS: "${{ !startsWith(github.ref, 'refs/tags/v') }}"
 
       - name: Build wheels for aarch64
         uses: pypa/cibuildwheel@v2.3.0
-        if: ${{ matrix.archs }} == "aarch64"
+        if: ${{ matrix.os.archs }} == "aarch64"
         env:
           CIBW_ARCHS: "${{ matrix.archs }}"
           CIBW_PRERELEASE_PYTHONS: "${{ !startsWith(github.ref, 'refs/tags/v') }}"
